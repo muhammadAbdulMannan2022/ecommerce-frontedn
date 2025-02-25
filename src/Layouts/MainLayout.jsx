@@ -2,21 +2,30 @@ import "../App.css";
 import PropTypes from "prop-types";
 import Navbar from "../Pages/Navbar";
 import { Outlet } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Footer from "../Pages/Footer";
 
 export default function MainLayout() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
+  useEffect(() => {
+    window.addEventListener("scroll", (e) =>
+      e ? setIsScrolling(true) : setIsScrolling(false)
+    );
+  }, []);
+
   return (
     <>
       <div className="overflow-x-hidden">
-        <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
+        <Navbar isScrolling={isScrolling} setIsScrolling={setIsScrolling} />
       </div>
       <Outlet />
-      {/* Footer goes here */}
+      <div>
+        <Footer />
+      </div>
     </>
   );
 }
-
 MainLayout.propTypes = {
-  children: PropTypes.node.isRequired,
+  isScrolling: PropTypes.bool.isRequired,
+  setIsScrolling: PropTypes.func.isRequired,
 };

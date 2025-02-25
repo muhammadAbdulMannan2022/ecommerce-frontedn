@@ -64,7 +64,7 @@ const ProductSection = () => {
           {visibleProducts.map((product) => (
             <div
               key={product.id}
-              className="bg-white p-4 shadow-lg rounded-lg flex flex-col h-[400px] w-[250px]"
+              className="bg-white p-4 shadow-lg rounded-lg flex flex-col h-[400px] md:w-[250px] w-[400px]"
             >
               <img
                 src={product.image}

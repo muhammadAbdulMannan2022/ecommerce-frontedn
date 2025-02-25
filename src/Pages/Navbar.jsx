@@ -1,15 +1,29 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdOutlineShoppingCart } from "react-icons/md";
+import PropTypes from "prop-types";
 
-const Navbar = () => {
+const Navbar = ({ isScrolling, setIsScrolling }) => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
   const toggleNavbar = () => {
+    if (isScrolling && isOpen) {
+      setIsOpen(false);
+      setIsScrolling(false);
+    }
+
     setIsOpen(!isOpen);
+    // console.log(isOpen);
+    // console.log(isScrolling);
   };
 
+  useEffect(() => {
+    if (isScrolling && isOpen) {
+      setIsOpen(false);
+      setIsScrolling(false);
+    }
+  }, [isOpen, isScrolling]);
   return (
     <nav
       className={`z-20 bg-white relative shadow-md py-4 px-6 flex justify-between items-center h-[85px] overflow-hidden border border-b ${
@@ -71,3 +85,8 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+Navbar.propTypes = {
+  isScrolling: PropTypes.bool.isRequired,
+  setIsScrolling: PropTypes.func.isRequired,
+};

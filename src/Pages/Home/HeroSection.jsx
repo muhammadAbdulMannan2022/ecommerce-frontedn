@@ -13,10 +13,10 @@ const HeroSection = () => {
         <div className="flex justify-center mb-4">
           <FaLeaf className="text-green-400 text-5xl" />
         </div>
-        <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+        <h1 className="text-2xl md:text-6xl font-bold leading-tight">
           Fresh & Organic Food, Straight from the Farm
         </h1>
-        <p className="mt-4 text-lg md:text-xl text-gray-200">
+        <p className="mt-4 text-md md:text-xl text-gray-200">
           Experience the true taste of nature with our locally-sourced organic
           products.
         </p>
