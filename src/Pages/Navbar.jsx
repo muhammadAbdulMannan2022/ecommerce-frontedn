@@ -11,7 +11,11 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white relative shadow-md py-4 px-6 flex justify-between items-center h-[85px] overflow-hidden border border-b">
+    <nav
+      className={`z-20 bg-white relative shadow-md py-4 px-6 flex justify-between items-center h-[85px] overflow-hidden border border-b ${
+        isOpen && "fixed top-0 left-0 w-full"
+      }`}
+    >
       <div className="text-2xl font-bold text-blue-600">
         <Link to="/">ShopEase</Link>
       </div>
