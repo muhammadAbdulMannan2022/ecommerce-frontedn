@@ -50,7 +50,7 @@ my-project/
 ### 1️⃣ Clone the Repository
 
 ```sh
-git clone https://github.com/yourusername/your-repo-name.git
+git clone https://github.com/muhammadAbdulMannan2022/ecommerce-frontedn.git
 cd your-repo-name
 ```
 
