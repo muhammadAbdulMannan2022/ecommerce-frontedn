@@ -65,13 +65,13 @@ const Navbar = ({ isScrolling, setIsScrolling }) => {
         <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 py-6 md:py-0">
           <Link
             to="/cart"
-            className="flex items-center justify-center gap-1 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+            className="flex items-center justify-center gap-1 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
           >
             <MdOutlineShoppingCart /> <span>Cart</span>
           </Link>
           <Link
             to="/login"
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+            className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
           >
             Login
           </Link>
