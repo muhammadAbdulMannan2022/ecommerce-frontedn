@@ -30,8 +30,8 @@ const Navbar = ({ isScrolling, setIsScrolling }) => {
         isOpen && "fixed top-0 left-0 w-full"
       }`}
     >
-      <div className="text-2xl font-bold text-blue-600">
-        <Link to="/">ShopEase</Link>
+      <div className="text-2xl font-bold text-green-600 logoFont">
+        <Link to="/">Organic Haven</Link>
       </div>
       <div
         className={`fixed md:relative top-[85px] md:top-0 right-0 h-[calc(100%-85px)] md:h-auto w-2/3 md:w-auto bg-gray-50 md:bg-transparent flex flex-col md:flex-row items-center justify-start gap-6 md:gap-4 transition-transform duration-300 ease-in-out transform ${
@@ -47,12 +47,14 @@ const Navbar = ({ isScrolling, setIsScrolling }) => {
           ].map(({ path, label }) => (
             <li
               key={path}
-              className="hover:cursor-pointer hover:bg-slate-100 px-10 py-2 text-center md:px-4 md:py-1 rounded-md"
+              className={`hover:cursor-pointer hover:bg-green-100 px-10 py-2 text-center md:px-4 md:py-1 rounded-md ${
+                location?.pathname === path && "bg-green-100"
+              }`}
             >
               <Link
                 to={path}
-                className={`text-gray-700 hover:text-blue-600 ${
-                  location.pathname === path ? "font-bold" : ""
+                className={`text-gray-700 hover:text-green-600 ${
+                  location.pathname === path ? "font-bold text-green-600" : ""
                 }`}
               >
                 {label}
