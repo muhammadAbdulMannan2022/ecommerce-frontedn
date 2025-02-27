@@ -31,16 +31,45 @@ _A modern and fully responsive organic food e-commerce platform with a village f
 
 ```
 my-project/
-│── public/                 # Static assets (images, icons, etc.)
-│── src/
-│   ├── components/         # Reusable UI components
-│   ├── pages/              # Main pages (Home, Shop, Cart, etc.)
-│   ├── hooks/              # Custom React hooks
-│   ├── context/            # State management (e.g., Auth, Cart)
-│   ├── assets/             # Images and icons
-│   ├── styles/             # Global styles (Tailwind, CSS modules)
-│── package.json            # Dependencies & scripts
-│── README.md               # Project documentation (this file!)
+├── public/
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── vite.svg
+├── src/
+│   ├── App.css
+│   ├── App.jsx
+│   ├── index.css
+│   ├── main.jsx
+│   ├── assets/
+│   │   └── (any reusable assets like icons, images, etc.)
+│   ├── components/
+│   │   └── (any reusable components)
+│   ├── firebase/
+│   │   └── (Firebase configuration files)
+│   ├── layouts/
+│   │   ├── Layout.jsx
+│   │   └── (other layout components)
+│   ├── pages/
+│   │   ├── About.jsx
+│   │   ├── Contact.jsx
+│   │   ├── FAQ.jsx
+│   │   ├── Footer.jsx
+│   │   ├── Home.jsx
+│   │   ├── Product.jsx
+│   │   ├── Shop.jsx
+│   │   └── (other page components)
+│   ├── providers/
+│   │   └── (custom React hooks and providers)
+│   ├── router/
+│   │   └── index.jsx
+│   └── utils/
+│       └── (any utility functions or constants)
+├── .gitignore
+...
+
 ```
 
 ---
