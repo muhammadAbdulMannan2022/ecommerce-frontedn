@@ -85,7 +85,7 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  // Context Value
+  // Context Value to shere
   const AuthData = {
     user,
     loading,
