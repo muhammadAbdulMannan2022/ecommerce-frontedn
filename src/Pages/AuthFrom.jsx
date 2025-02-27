@@ -1,17 +1,47 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../providers/AuthProvider"; // Make sure path is correct
 import { FaUser, FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 
 const AuthForm = () => {
+  const { emailPasswordSignup, logInUserEmailPassword } =
+    useContext(AuthContext);
+
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
 
+  const [name, setName] = useState(""); // For signup
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
   const toggleForm = () => {
     setIsLogin(!isLogin);
+    setError(""); // Clear error on toggle
   };
 
   const togglePassword = () => {
     setShowPassword(!showPassword);
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    try {
+      if (isLogin) {
+        // Login flow
+        await logInUserEmailPassword(email, password);
+        console.log("Login successful");
+      } else {
+        // Signup flow
+        await emailPasswordSignup(email, password, name);
+        console.log("Signup successful");
+      }
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+  // console.log(emailPasswordSignup);
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
@@ -20,7 +50,9 @@ const AuthForm = () => {
           <FaUser /> {isLogin ? "Login" : "Sign Up"}
         </h2>
 
-        <form className="mt-6">
+        {error && <p className="text-red-600 text-center mt-2">{error}</p>}
+
+        <form className="mt-6" onSubmit={handleSubmit}>
           {!isLogin && (
             <div className="relative">
               <label className="block text-gray-600">Full Name</label>
@@ -28,8 +60,11 @@ const AuthForm = () => {
                 <FaUser className="text-gray-500" />
                 <input
                   type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   className="w-full px-3 py-2 outline-none"
                   placeholder="Enter your full name"
+                  required={!isLogin}
                 />
               </div>
             </div>
@@ -41,8 +76,11 @@ const AuthForm = () => {
               <FaEnvelope className="text-gray-500" />
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-3 py-2 outline-none"
                 placeholder="Enter your email"
+                required
               />
             </div>
           </div>
@@ -53,8 +91,11 @@ const AuthForm = () => {
               <FaLock className="text-gray-500" />
               <input
                 type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="w-full px-3 py-2 outline-none"
                 placeholder="Enter your password"
+                required
               />
               <button
                 type="button"
@@ -66,7 +107,10 @@ const AuthForm = () => {
             </div>
           </div>
 
-          <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg mt-6 hover:bg-blue-700 transition flex items-center justify-center gap-2">
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg mt-6 hover:bg-blue-700 transition flex items-center justify-center gap-2"
+          >
             <FaUser /> {isLogin ? "Login" : "Sign Up"}
           </button>
         </form>
