@@ -1,14 +1,16 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import PropTypes from "prop-types";
 import { AuthContext } from "../providers/AuthProvider";
+import { dummyUser } from "./Profile/dummyData";
 
 const Navbar = ({ isScrolling, setIsScrolling }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const { loading, user, logOutUser } = useContext(AuthContext);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const toggleNavbar = () => {
     if (isScrolling && isOpen) {
@@ -23,7 +25,9 @@ const Navbar = ({ isScrolling, setIsScrolling }) => {
   const handleLogout = () => {
     logOutUser();
     console.log("logged out successfully");
+    navigate("/login", { replace: true });
   };
+  console.log(user);
 
   useEffect(() => {
     if (isScrolling && isOpen) {
@@ -46,6 +50,22 @@ const Navbar = ({ isScrolling, setIsScrolling }) => {
         }`}
       >
         <ul className="flex flex-col md:flex-row items-center justify-center gap-3 py-6 md:py-0">
+          {!loading && user && (
+            <li className="block md:hidden">
+              <Link
+                to="/profile"
+                className="w-12 h-12 flex items-center justify-center"
+              >
+                <div className="w-full h-full border-green-400 border-4 rounded-full">
+                  <img
+                    className="w-full h-full rounded-full"
+                    src={dummyUser?.profilePicture}
+                    alt={user?.displsyName}
+                  />
+                </div>
+              </Link>
+            </li>
+          )}
           {[
             { path: "/", label: "Home" },
             { path: "/shop", label: "Shop" },
@@ -76,6 +96,22 @@ const Navbar = ({ isScrolling, setIsScrolling }) => {
           >
             <MdOutlineShoppingCart /> <span>Cart</span>
           </Link>
+          {!loading && user && (
+            <li className="md:block hidden">
+              <Link
+                to="/profile"
+                className="w-12 h-12 md:w-10 md:h-10 flex items-center justify-center"
+              >
+                <div className="w-full h-full border-green-400 border-4 rounded-full">
+                  <img
+                    className="w-full h-full rounded-full"
+                    src={dummyUser?.profilePicture}
+                    alt={user?.displsyName}
+                  />
+                </div>
+              </Link>
+            </li>
+          )}
           {!loading && !user ? (
             <Link
               to="/login"
@@ -85,8 +121,10 @@ const Navbar = ({ isScrolling, setIsScrolling }) => {
             </Link>
           ) : (
             <div
-              onClick={() => handleLogout()}
-              className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
+              onClick={() => !loading && handleLogout()}
+              className={`bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 text-center cursor-pointer ${
+                loading && "opacity-50 cursor-not-allowed"
+              }`}
             >
               Log out
             </div>

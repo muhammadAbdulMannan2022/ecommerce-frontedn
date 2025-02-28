@@ -7,6 +7,7 @@ import NotFound from "../Pages/NotFound";
 import Shop from "../Pages/Shop/Shop";
 import About from "../Pages/About";
 import OnlyUser from "../Pages/Private/OnlyUser";
+import ProfilePage from "../Pages/Profile/ProfilePage";
 
 // Define all routes here
 const routes = createBrowserRouter([
@@ -22,6 +23,14 @@ const routes = createBrowserRouter([
         element: (
           <OnlyUser>
             <Cart />
+          </OnlyUser>
+        ),
+      },
+      {
+        path: "/profile",
+        element: (
+          <OnlyUser>
+            <ProfilePage />
           </OnlyUser>
         ),
       },
