@@ -6,6 +6,7 @@ import Cart from "../Pages/Cart/Cart";
 import NotFound from "../Pages/NotFound";
 import Shop from "../Pages/Shop/Shop";
 import About from "../Pages/About";
+import OnlyUser from "../Pages/Private/OnlyUser";
 
 // Define all routes here
 const routes = createBrowserRouter([
@@ -16,7 +17,14 @@ const routes = createBrowserRouter([
       // Add routes here
       { path: "/", element: <Home /> },
       { path: "/about", element: <About /> },
-      { path: "/cart", element: <Cart /> },
+      {
+        path: "/cart",
+        element: (
+          <OnlyUser>
+            <Cart />
+          </OnlyUser>
+        ),
+      },
       { path: "/login", element: <AuthForm /> },
       { path: "/shop", element: <Shop /> },
       { path: "*", element: <NotFound /> },

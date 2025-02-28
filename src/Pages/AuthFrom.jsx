@@ -1,11 +1,13 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider"; // Make sure path is correct
 import { FaUser, FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const AuthForm = () => {
   const { emailPasswordSignup, logInUserEmailPassword } =
     useContext(AuthContext);
-
+  const navigate = useNavigate();
+  const loction = useLocation();
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -26,16 +28,20 @@ const AuthForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    console.log(loction.state.from);
 
     try {
       if (isLogin) {
         // Login flow
         await logInUserEmailPassword(email, password);
         console.log("Login successful");
+
+        navigate(`${loction?.state?.from || "/"}`);
       } else {
         // Signup flow
         await emailPasswordSignup(email, password, name);
         console.log("Signup successful");
+        navigate(`${loction?.state?.from || "/"}`);
       }
     } catch (err) {
       setError(err.message);

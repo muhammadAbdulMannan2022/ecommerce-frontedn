@@ -1,10 +1,13 @@
 import { Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import PropTypes from "prop-types";
+import { AuthContext } from "../providers/AuthProvider";
 
 const Navbar = ({ isScrolling, setIsScrolling }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const { loading, user, logOutUser } = useContext(AuthContext);
   const location = useLocation();
 
   const toggleNavbar = () => {
@@ -16,6 +19,10 @@ const Navbar = ({ isScrolling, setIsScrolling }) => {
     setIsOpen(!isOpen);
     // console.log(isOpen);
     // console.log(isScrolling);
+  };
+  const handleLogout = () => {
+    logOutUser();
+    console.log("logged out successfully");
   };
 
   useEffect(() => {
@@ -69,12 +76,21 @@ const Navbar = ({ isScrolling, setIsScrolling }) => {
           >
             <MdOutlineShoppingCart /> <span>Cart</span>
           </Link>
-          <Link
-            to="/login"
-            className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
-          >
-            Login
-          </Link>
+          {!loading && !user ? (
+            <Link
+              to="/login"
+              className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
+            >
+              Login
+            </Link>
+          ) : (
+            <div
+              onClick={() => handleLogout()}
+              className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
+            >
+              Log out
+            </div>
+          )}
         </div>
       </div>
       <div className="md:hidden z-10">
