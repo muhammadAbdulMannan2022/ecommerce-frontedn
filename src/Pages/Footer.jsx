@@ -67,7 +67,7 @@ const Footer = () => {
       </div>
 
       {/* Copyright */}
-      <div className="mt-8 text-center text-gray-400 border-t border-gray-600 pt-4">
+      <div className="mt-8 text-center text-gray-400 border-t border-gray-600 pt-4 font-bold">
         <p className="text-wrap">
           &copy; {new Date().getFullYear()} Organic Delights. All Rights
           Reserved.
