@@ -28,7 +28,7 @@ const AuthForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    console.log(loction.state.from);
+    // console.log(loction.state.from);
 
     try {
       if (isLogin) {

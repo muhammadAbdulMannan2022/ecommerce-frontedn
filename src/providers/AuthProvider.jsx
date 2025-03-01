@@ -8,8 +8,10 @@ import {
   updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
+import { getStorage } from "firebase/storage";
 
 const auth = getAuth(app);
+const storage = getStorage(app);
 
 // Creating Auth Context
 export const AuthContext = createContext(null);
@@ -74,6 +76,14 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
     }
   };
+  // updateProfile
+  const updateUserProfile = (name, photoUrl) => {
+    if (!auth.currentUser) return Promise.reject("No current user");
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photoUrl,
+    });
+  };
 
   // 🔹 Track Current User (Firebase Observer)
   useEffect(() => {
@@ -89,9 +99,11 @@ const AuthProvider = ({ children }) => {
   const AuthData = {
     user,
     loading,
+    storage,
     emailPasswordSignup,
     logInUserEmailPassword,
     logOutUser,
+    updateUserProfile,
   };
 
   return (

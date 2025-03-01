@@ -1,15 +1,17 @@
 import { Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useContext } from "react";
+import Loading from "../../utils/Loading";
 
 const OnlyUser = ({ children }) => {
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   const location = useLocation();
-
-  if (!user) {
+  if (loading) {
+    return <Loading />;
+  }
+  if (!user && !loading) {
     // Redirect to login and remember where the user came from
-    console.log(location);
-
+    // console.log(location);
     return (
       <Navigate to="/login" state={{ from: location?.pathname }} replace />
     );
