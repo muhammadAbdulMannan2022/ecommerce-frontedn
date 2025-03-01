@@ -59,7 +59,9 @@ const Navbar = ({ isScrolling, setIsScrolling }) => {
                 <div className="w-full h-full border-green-400 border-4 rounded-full">
                   <img
                     className="w-full h-full rounded-full"
-                    src={dummyUser?.profilePicture}
+                    src={
+                      user.photoURL || "https://avatar.iran.liara.run/public"
+                    }
                     alt={user?.displsyName}
                   />
                 </div>
@@ -105,7 +107,9 @@ const Navbar = ({ isScrolling, setIsScrolling }) => {
                 <div className="w-full h-full border-green-400 border-4 rounded-full">
                   <img
                     className="w-full h-full rounded-full"
-                    src={dummyUser?.profilePicture}
+                    src={
+                      user?.photoURL || "https://avatar.iran.liara.run/public"
+                    }
                     alt={user?.displsyName}
                   />
                 </div>

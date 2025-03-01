@@ -15,12 +15,14 @@ const BasicInfo = ({ user }) => {
     <div className="bg-white p-4 rounded-lg shadow-md">
       <div className="flex items-center gap-4">
         <img
-          src={orgnalUser?.photoURL || "/default-avatar.png"}
+          src={orgnalUser?.photoURL || "https://avatar.iran.liara.run/public"}
           alt="Profile"
           className="w-20 h-20 rounded-full border border-gray-300"
         />
         <div className="flex-1">
-          <h2 className="text-xl font-bold">{orgnalUser?.displayName}</h2>
+          <h2 className="text-xl font-bold">
+            {orgnalUser?.displayName || "User"}
+          </h2>
           <p className="text-gray-500">{orgnalUser?.email}</p>
         </div>
         <Link
